@@ -1,0 +1,25 @@
+class Solution {
+public:
+  int maxArea(vector<int>& height) {
+  int n=height.size()-1;
+  int low=0;
+  int high=n;
+  int max=INT_MIN;
+  int currMax;
+  while(low < high){
+    int min_Element=min(height[low],height[high]);
+    currMax=min_Element*n;
+    if(min_Element == height[low]){
+      low++;
+      n--;
+    } else{
+      high--;
+      n--;
+    }
+    if(currMax >max ){
+      max=currMax;
+    }
+  }
+  return max; 
+}
+};
