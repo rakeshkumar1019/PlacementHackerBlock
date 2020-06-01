@@ -1,0 +1,23 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int distributeCandies(vector<int>& candies){
+  map<int,int> m;
+  int girls=candies.size()/2;
+  for(int i=0;i<candies.size();i++){
+    m[candies[i]]+=1;
+  }
+  int no_candy=m.size();
+  return min(girls,no_candy);
+}
+int main(){
+  int n;
+  cin>>n;
+  vector<int> candies;
+  for(int i=0;i<n;i++){
+    int temp;
+    cin>>temp;
+    candies.push_back(temp);
+  }
+  cout<<distributeCandies(candies)<<endl;
+}
