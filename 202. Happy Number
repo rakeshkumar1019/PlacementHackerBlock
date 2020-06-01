@@ -1,0 +1,36 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int happyHelper(int n){
+      int temp=0;
+      while(n!=0){
+        temp+=(n%10)*(n%10);
+        n=n/10;
+      }
+      return temp;
+}
+bool isHappy(int n){
+  map<int,int> m;
+  if(n==1){
+    return true;
+  }
+  while(true){
+    int val=happyHelper(n);
+       if(val==1){
+          return true;
+       }else{
+         if(m[val]==1){
+         return false;
+         }else{
+         m[val]=1;
+         n=val;
+         }
+      }
+  }
+}
+
+int main(){
+  int n;
+  cin>>n;
+  cout<<isHappy(n)<<endl;
+}
