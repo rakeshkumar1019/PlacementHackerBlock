@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>>m(numCourses);
+            vector<int>deg(numCourses,0);
+            //adjacecy list
+            for(int i=0;i<prerequisites.size();i++){
+                    m[prerequisites[i][1]].push_back(prerequisites[i][0]);
+                    deg[prerequisites[i][0]]++;
+            }
+            queue<int>q;
+            for(int i=0;i<numCourses;i++){
+                    if(deg[i]==0){
+                            q.push(i);//adding 0 prerequisites node in queue
+                    }
+            }
+            int count=0;
+            while(!q.empty()){
+                    int top=q.front();
+                    q.pop();
+                    count++;
+                    for(auto x:m[top]){
+                            deg[x]--;
+                            if(deg[x]==0){
+                                    q.push(x);
+                            }
+                    }
+            }
+            if(count==numCourses){
+                    return true;
+            }
+            return false;
+            
+    }
+};
